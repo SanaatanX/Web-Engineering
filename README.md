@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-http://localhost:5173/
-
-
-=======
 # Web-Engineering
 XDU-2022级Web工程第2组
 1. 许永烨：SanaatanX
