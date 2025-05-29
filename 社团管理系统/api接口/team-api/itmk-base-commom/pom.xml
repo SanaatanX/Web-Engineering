@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.itmk</groupId>
+        <artifactId>team-api</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>itmk-base-commom</artifactId>
+    <name>Archetype - itmk-base-commom</name>
+    <url>http://maven.apache.org</url>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- Lombok（版本通过dependencyManagement控制） -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope> <!-- 推荐增加scope -->
+        </dependency>
+
+        <!-- JWT（升级到最新稳定版，支持JDK 21） -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.12.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.12.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- FastJSON（升级到安全版本） -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.48</version>
+        </dependency>
+    </dependencies>
+</project>

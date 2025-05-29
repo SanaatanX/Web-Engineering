@@ -1,0 +1,119 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.itmk</groupId>
+  <artifactId>team-api</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Archetype - team-api</name>
+  <url>http://maven.apache.org</url>
+  <modules>
+    <module>itmk-base-commom</module>
+    <module>itmk-base-web</module>
+  </modules>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.5</version>
+    <relativePath/>
+  </parent>
+
+  <properties>
+    <java.version>21</java.version>
+    <lombok.version>1.18.32</lombok.version>  <!-- 最新稳定版 -->
+    <mybatis-plus.version>3.5.6</mybatis-plus.version>  <!-- 支持 Spring Boot 3.x -->
+    <druid.version>1.2.21</druid.version>  <!-- 阿里最新维护版 -->
+    <kaptcha.version>2.3.3</kaptcha.version>
+    <fastjson.version>2.0.48</fastjson.version>  <!-- 修复安全漏洞 -->
+    <commons-lang.version>2.6</commons-lang.version>
+    <commons-collections.version>4.4</commons-collections.version>  <!-- 升级到 4.x -->
+    <commons-io.version>2.16.1</commons-io.version>  <!-- 最新稳定版 -->
+    <mysql-connector.version>8.0.33</mysql-connector.version>  <!-- MySQL 最新驱动 -->
+    <springdoc.version>2.5.0</springdoc.version>  <!-- 支持 Spring Boot 3.2.x -->
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- MySQL -->
+      <dependency>
+        <groupId>com.mysql</groupId> <!-- 新的 groupId -->
+        <artifactId>mysql-connector-j</artifactId> <!-- 新的 artifactId -->
+        <version>${mysql-connector.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+
+      <!-- Druid 连接池 -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+
+      <!-- MyBatis-Plus -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>mybatis-spring</artifactId>
+            <groupId>org.mybatis</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>3.0.3</version>
+      </dependency>
+
+      <!-- Kaptcha 验证码 -->
+      <dependency>
+        <groupId>com.github.penggle</groupId>
+        <artifactId>kaptcha</artifactId>
+        <version>${kaptcha.version}</version>
+      </dependency>
+
+      <!-- FastJSON -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+
+      <!-- Apache Commons -->
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>${commons-lang.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>  <!-- 注意artifactId变化 -->
+        <version>${commons-collections.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons-io.version}</version>
+      </dependency>
+
+      <!-- SpringDoc OpenAPI (Swagger) -->
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        <version>${springdoc.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>
