@@ -14,27 +14,27 @@ export default function useUserTable() {
         total: 0, // 总条数
     }); // 定义搜索参数
 
-    // 获取列表
-    const getList = async() => {
-        let res = await getListApi(searchParm);
-        if(res && res.code == 200) {
-            searchParm.total = res.data.total; // 总条数
-            console.log(res);
-            tableList.value = res.data.records; // 表格数据
-            // 设置总条数
+    //获取列表
+    const getList = async()=>{
+        let res = await getListApi(searchParm)
+        if(res && res.code == 200){
+            //把后端返回的数据设置到表格数据
+            console.log(res)
+            tableList.value = res.data.records
+            //设置总条数
             searchParm.total = res.data.total;
         }
     }
 
-    // 搜索按钮
-    const searchBtn = () => { 
-        getList(); // 获取列表
+    //搜索按钮
+    const searchBtn = () => {
+        getList()
     }
-    // 重置按钮
+    //重置按钮
     const resetBtn = () => {
-        searchParm.nickName = ''; // 昵称
-        searchParm.currentPage = 1; // 当前页码
-        getList(); // 获取列表
+        searchParm.nickName = ''
+        searchParm.currentPage = 1;
+        getList()
     }
 
     // 页容量改变时触发
@@ -50,14 +50,14 @@ export default function useUserTable() {
 
     }
 
-    const updateTableHeight = async () => {
-        await nextTick();
-        tableHeight.value = window.innerHeight - 200;
-    };
-
-    onMounted(() => {
-        getList(); 
-        updateTableHeight();
+    onMounted(()=>{
+        getList()
+        //表格高度计算
+        nextTick(()=>{
+            tableHeight.value = window.innerHeight - 220
+        })
     })
+
+
     return { searchParm, getList,searchBtn, resetBtn, tableList, sizeChange, currentChange, tableHeight }
 }

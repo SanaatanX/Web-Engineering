@@ -20,6 +20,11 @@ mybatis-plus:
       # 配置mybatis plus在更新时只更新非空和非NULL的字段
       update-strategy: not_empty
 
+#图片上传
+web:
+  uploadpath: D:/images/  #图片上传的路径
+  load-path: file:D://images/ #图片访问、加载的路径
+
 logging:
   pattern:
     console: '%d{yyyy-MM-dd} [%thread] %-5level %logger - %msg%n'

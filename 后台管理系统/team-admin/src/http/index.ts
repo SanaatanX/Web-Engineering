@@ -127,6 +127,14 @@ this.instance.interceptors.response.use((res: AxiosResponse) => {
     delete(url: string): Promise<any>{
         return this.instance.delete(url);
     }
+    //图片上传
+    upload(url: string, params?: object): Promise<any> {
+        return this.instance.post(url, params, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    }
 }
 
 // 导出实例

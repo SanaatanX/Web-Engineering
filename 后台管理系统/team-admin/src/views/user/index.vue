@@ -57,7 +57,7 @@ import useUserTable from '@/composable/user/useUserTable';
 // 表格相关的操作
 const { searchParm, getList,searchBtn, resetBtn, tableList, sizeChange, currentChange, tableHeight} = useUserTable();
 // 新增、编辑、删除
-const { addBtn, editBtn, deleteBtn, addUserRef } = useUser();
+const { addBtn, editBtn, deleteBtn, addUserRef } = useUser(getList);
 
 </script>
 

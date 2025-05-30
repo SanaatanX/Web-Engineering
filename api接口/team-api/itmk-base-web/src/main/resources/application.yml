@@ -1,3 +1,8 @@
 spring:
   profiles:
     active: test
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto # 确保与实体类一致

@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import router from './router/index'
 // import './style.css'
 import App from './App.vue'
-
+import myConfirm from './utils/myConfirm'
 
 // 引入element-plus
 import ElementPlus from 'element-plus'
@@ -24,3 +24,5 @@ app.use(ElementPlus,{
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
+
+app.config.globalProperties.$myconfirm = myConfirm;
