@@ -1,23 +1,20 @@
-import { ref } from 'vue';
+import { ref } from "vue";
+import { User } from "@/api/user/UserModel";
+import { EditType } from "@/type/BaseType";
 export default function useUser() {
-    //弹框的ref属性
-    const addUserRef = ref<{ show: () => void }>();
+    // 弹框的ref属性
+    const addUserRef = ref<{show:(type:string,row?:User)=>void}>();
     //新增
     const addBtn = () => {
-        addUserRef.value?.show()
+        addUserRef.value?.show(EditType.ADD);
     }
     //编辑
-    const editBtn = () => {
-
+    const editBtn = (row:User) => {
+        addUserRef.value?.show(EditType.EDIT,row);
     }
     //删除
-    const deleteBtn = () => {
-
+    const deleteBtn = (row:User) => {
+        
     }
-    return {
-        addBtn,
-        editBtn,
-        deleteBtn,
-        addUserRef
-    }
+    return { addUserRef, addBtn, editBtn, deleteBtn }
 }

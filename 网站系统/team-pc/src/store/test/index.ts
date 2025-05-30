@@ -1,67 +1,19 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Layout from '@/views/layout/index.vue'
-
-const routes: Array<RouteRecordRaw> = [
-{
-    path: '/',
-    component: Layout,
-    redirect:'/home',
-    children: [
-    {
-        path: '/home',
-        name: 'home',
-        component: () => import('@/views/home/home.vue'),
-        meta:{
-            title:'首页'
+import {defineStore} from "pinia"
+//定义store
+//第一个参数是store的唯一标识，第二个参数是一个对象，对象中包含state、getters、actions
+export const testStore = defineStore('testStore',{
+    //存储count的地方，，初始化值为0
+    state: () => {
+        return{ 
+            count: 0 
         }
     },
-    {
-        path: '/team',
-        name: 'team',
-        component: () => import('@/views/team/team.vue'),
-        meta: {
-            title: '社团'
-        },
-        children: []
+    //获取state里面count的值
+    getters: {
+        getCount(state) {return state.count}
     },
-    {
-        path: '/activity',
-        name: 'activity',
-        component: () => import('@/views/activity/activity.vue'),
-        meta: {
-            title: '活动'
+    //修改count的地方，修改count的值
+    actions: {
+        setCount(count: number) {this.count = count;}
         }
-    },
-    {
-        path: '/news',
-        name: 'news',
-        component: () => import('@/views/news/news.vue'),
-        meta: {
-            title: '新闻'
-        }
-    },
-    {
-        path: '/mine',
-        name: 'mine',
-        component: () => import('@/views/mine/mine.vue'),
-        meta: {
-            title: '个人中心'
-        }
-    },
-    {
-        path: '/notice',
-        name: 'notice',
-        component: () => import('@/views/notice/notice.vue'),
-        meta: {
-            title: '公告列表'
-        }
-    }
-    ]
-}]
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes
 })
-
-export default router

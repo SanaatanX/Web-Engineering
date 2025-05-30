@@ -1,17 +1,15 @@
-import {defineStore} from 'pinia'
-//定义store
-// 第一个参数是你的应用中 Store 的唯一 ID
-export const tabsSotre = defineStore('tabsSotre',{
-    state:()=>{
-        return{
-            fatabs:'home',
-            mineTabs:'/mine/mycenter'
-        }
-    },
-    persist: {
-        enabled: true,
-        strategies: [
-            { storage: localStorage, paths: ['fatabs','mineTabs'] },
-        ],
-    }
-})
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+
+export const tabsStore = defineStore('tabsStore', () => {
+    const fatabs = ref('home')
+    const mineTabs = ref('/mine/mycenter')
+   return {
+      fatabs,mineTabs }},
+    { 
+        persist: {
+        storage: localStorage,
+        pick: ['fatabs', 'mineTabs'], // 需要持久化的字段
+      }
+  }
+)

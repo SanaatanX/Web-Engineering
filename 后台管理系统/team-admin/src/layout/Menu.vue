@@ -1,14 +1,15 @@
 <template>
-  <MenuLogo></MenuLogo>
-  <el-menu
+    <MenuLogo></MenuLogo>
+    <el-menu
     :default-active="defaultActive"
     class="el-menu-vertical-demo"
     :collapse="isCollapse"
     @open="handleOpen"
-    @close="handleClose"
+    @close="handleClose"  
     background-color="#0e1f37"
     router
   >
+    
     <el-menu-item index="/home">
       <el-icon><House /></el-icon>
       <template #title>首页</template>
@@ -38,38 +39,50 @@
       <template #title>活动管理</template>
     </el-menu-item>
     <el-menu-item index="/news">
-      <el-icon><setting /></el-icon>
+      <el-icon><Setting /></el-icon>
       <template #title>新闻管理</template>
     </el-menu-item>
   </el-menu>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import MenuLogo from "./MenuLogo.vue";
-import { menuStore } from "@/store/menu";
-import { useRoute } from "vue-router";
-const route = useRoute()
+import { ref } from 'vue';
+import MenuLogo from './MenuLogo.vue';
+import { menuStore } from '@/store/menu';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+const route = useRoute();
 const store = menuStore();
-const isCollapse = computed(() => {
-  return store.getCollapse;
-});
+const isCollapse = computed(() => { return store.getCollapse });
+
 //获取当前激活的菜单：当前路由
-const defaultActive = computed(()=>{
-  return route.path
-})
+const defaultActive = computed(() => { return route.path });
+
+import {
+    Avatar,
+  Document,
+  Histogram,
+  Menu as IconMenu,
+  Location,
+  Operation,
+  Postcard,
+  Setting,
+  UserFilled,
+} from '@element-plus/icons-vue'
+
+
 const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
+  console.log(key, keyPath)
+}
 const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
+  console.log(key, keyPath)
+}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 230px;
-  min-height: 400px;
+  width: 200px;
+  min-height: 400px; 
 }
 .el-menu {
   border-right: none;
@@ -83,9 +96,8 @@ const handleClose = (key: string, keyPath: string[]) => {
   color: #f07810 !important;
   background-color: #1f2d3d !important;
 }
-/* 鼠标移动菜单的颜色 */
 
 :deep(.el-menu-item:hover) {
-  background-color: #001528 !important;
+    background-color: #001528 !important;
 }
 </style>

@@ -2,5 +2,10 @@
   <router-view/>
 </template>
 
-<style lang="scss">
+<script setup lang="ts">
+
+</script>
+
+<style scoped lang="scss">
+
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <el-dropdown style="padding: 0px 20px;cursor: pointer;border: none;">
+    <el-dropdown style="padding: 0px 20px; cursor: pointer;">
     <span class="el-dropdown-link">
-      <img class="userimg" src="@/assets/user.jpg"/>
+      <img class ="userimg" src="@/assets/user.jpg"/>
     </span>
     <template #dropdown>
       <el-dropdown-menu>
@@ -9,7 +9,7 @@
         <el-dropdown-item>退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </template>
-  </el-dropdown>
+    </el-dropdown>
 </template>
 
 <script setup lang="ts">
@@ -21,6 +21,6 @@
     height: 38px;
     width: 38px;
     border-radius: 50%;
-    border: none;
 }
+
 </style>
