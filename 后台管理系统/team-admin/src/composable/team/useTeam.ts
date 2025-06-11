@@ -1,8 +1,8 @@
-import { TeamType } from "@/api/team/TeamModel";
+import { TeamType } from "@/api/team/TeamMdel";
 import { EditType, FuncList } from "@/type/BaseType";
 import { ref } from "vue";
-import useInstance from "@/hook/useInstance";
-import { deleteTeamApi } from "@/api/team/index";
+import useInstance from "@/hooks/useInstance";
+import { deleteTeamApi } from "@/api/team";
 import { ElMessage } from "element-plus";
 export default function useTeam(getList:FuncList){
     const {global} = useInstance()

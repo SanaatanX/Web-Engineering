@@ -1,5 +1,5 @@
 <template>
-    <el-main>
+  <el-main>
     <!-- 搜索栏 -->
     <el-form :model="searchParm" :inline="true" size="default">
       <el-form-item>
@@ -56,11 +56,9 @@
 <script setup lang="ts">
 import AddCategory from "./AddCategory.vue";
 import useTableCategory from "@/composable/category/useTableCategory";
-import useCategory from "@/composable/category/useCategory";
+import useCategoty from "@/composable/category/useCategoty";
 const { searchParm, tableList,currentChange,sizeChange,tableHeight,searchBtn,resetBtn,getList } = useTableCategory();
-const { addBtn, editBtn, deleteBtn, addFormRef } = useCategory(getList);
+const { addBtn, editBtn, deleteBtn, addFormRef } = useCategoty(getList);
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

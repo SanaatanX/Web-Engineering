@@ -1,6 +1,6 @@
 <template>
     <div>
-        活动管理
+        新闻管理
     </div>
 </template>
 

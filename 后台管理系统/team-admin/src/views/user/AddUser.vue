@@ -27,8 +27,8 @@
         <el-form-item prop="phone" label="电话">
           <el-input v-model="addModel.phone"></el-input>
         </el-form-item>
-        <el-form-item prop="userName" label="登录账户">
-          <el-input v-model="addModel.userName"></el-input>
+        <el-form-item prop="username" label="登录账户">
+          <el-input v-model="addModel.username"></el-input>
         </el-form-item>
         <el-form-item prop="password" label="密码">
           <el-input v-model="addModel.password"></el-input>
@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import SysDialog from "@/components/SysDialog.vue";
-import useDialog from "@/hook/useDialog";
+import useDialog from "@/hooks/useDialog";
 import { User } from "@/api/user/UserModel";
 import { nextTick, reactive,ref } from "vue";
 import { ElMessage, FormInstance } from "element-plus";
@@ -59,7 +59,7 @@ const { dialog, onClose, onShow } = useDialog();
 //表单绑定的数据对象
 const addModel = reactive<User>({
   userId: "",
-  userName: "",
+  username: "",
   password: "",
   nickName: "",
   phone: "",
@@ -71,12 +71,12 @@ const addModel = reactive<User>({
 //2.编写表单验证规则 rules
 //3.表单要绑定 :rules="rules"
 const rules = reactive({
-  userName: [{ required: true, message: '请输入登录账号', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
-  nickName: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
-  phone: [{ required: true, message: '请输入电话', trigger: 'blur' }],
-  sex: [{ required: true, message: '请选择性别', trigger: 'blur' }],
-  status: [{ required: true, message: '请选择状态', trigger: 'blur' }]
+  username:[{ required: true, message: '请输入登录账号', trigger: 'blur' }],
+  password:[{ required: true, message: '请输入登录密码', trigger: 'blur' }],
+  nickName:[{ required: true, message: '请输入姓名', trigger: 'blur' }],
+  phone:[{ required: true, message: '请输入电话', trigger: 'blur' }],
+  sex:[{ required: true, message: '请输入性别', trigger: 'blur' }],
+  status:[{ required: true, message: '请选择状态', trigger: 'blur' }]
 });
 //新增和编辑的标识
 const tags = ref('')
@@ -114,9 +114,7 @@ const commit = ()=>{
       //await:等待数据返回，才执行下面的代码
       let res = null
       if(tags.value == EditType.ADD){
-        // 添加用户时，不设置user_id，让后端自动生成
-        const { userId, ...addData } = addModel
-        res = await addUserApi(addData)
+        res = await addUserApi(addModel)
       }else{
         res = await editUserApi(addModel)
       }

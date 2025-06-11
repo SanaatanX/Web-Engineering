@@ -6,6 +6,7 @@ import com.itmk.web.sys_user.mapper.SysUserMapper;
 import com.itmk.web.sys_user.service.SysUserService;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 }

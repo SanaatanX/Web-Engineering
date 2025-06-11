@@ -1,5 +1,5 @@
 import http from "@/http";
-import { ListParm, User } from "./UserModel";
+import { ListParm, User,LoginType, AssignParm, SaveAssignParm,UpdatePassParm } from "./UserModel";
 //新增
 export const addUserApi = (parm:User)=>{
     return http.post("/api/user",parm)
@@ -15,4 +15,28 @@ export const editUserApi = (parm:User)=>{
 //删除
 export const deleteUserApi = (parm:User)=>{
     return http.delete(`/api/user/${parm.userId}`)
+}
+//验证码
+export const getImgApi = ()=>{
+    return http.post("/api/user/image")
+}
+//登录
+export const loginApi = (parm:LoginType) => {
+    return http.post("/api/user/login",parm)
+}
+//获取菜单树数据
+export const getAssignTreeApi = (parm:AssignParm)=>{
+    return http.get("/api/user/getAssignTree",parm)
+}
+//分配菜单保存
+export const assignSaveApi = (parm:SaveAssignParm) => {
+    return http.post("/api/user/assignSave",parm)
+}
+//查询用户菜单
+export const getUserMenusApi = (userId:string) => {
+    return http.post("/api/user/getUserMenus",{userId:userId})
+}
+//修改密码
+export const updatePasswordApi = (parm:UpdatePassParm)=>{
+    return http.put("/api/user/updatePassword",parm)
 }

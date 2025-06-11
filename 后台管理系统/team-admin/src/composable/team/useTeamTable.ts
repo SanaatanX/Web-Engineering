@@ -1,5 +1,5 @@
 import { nextTick, onMounted, reactive, ref } from "vue";
-import { getListApi } from "@/api/team/index";
+import { getListApi } from "@/api/team";
 export default function useTeamTable(){
     //表格高度
     const tableHeight = ref(0)

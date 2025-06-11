@@ -24,7 +24,7 @@
 import { addCategoryApi,editCategoryApi } from '@/api/category';
 import { CategoryModel } from '@/api/category/CategoryModel';
 import SysDialog from '@/components/SysDialog.vue';
-import useDialog from '@/hook/useDialog';
+import useDialog from '@/hooks/useDialog';
 import { EditType, Title } from '@/type/BaseType';
 import { ElMessage, FormInstance } from 'element-plus';
 import { nextTick, reactive, ref } from 'vue';
@@ -65,7 +65,6 @@ const rules = reactive({
 })
 //注册事件
 const emits = defineEmits(['onFresh'])
-//表单提交
 //表单提交
 const commit = ()=>{
     formRef.value?.validate(async(valid)=>{

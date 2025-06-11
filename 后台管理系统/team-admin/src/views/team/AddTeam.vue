@@ -72,7 +72,7 @@
 <script setup lang="ts">
 import { nextTick, reactive, ref, watch } from "vue";
 import SysDialog from "@/components/SysDialog.vue";
-import useDialog from "@/hook/useDialog";
+import useDialog from "@/hooks/useDialog";
 import useSelectCategory from "@/composable/team/useSelectCategory";
 import UploadImage from "@/components/UploadImage.vue";
 import { ElMessage, FormInstance, UploadUserFile } from "element-plus";
@@ -81,7 +81,7 @@ import "@wangeditor/editor/dist/css/style.css"; // 引入 css
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import useEditor from "@/composable/team/useEditor";
 import { addTeamApi, editTeamApi } from "@/api/team/index";
-import { TeamType } from "@/api/team/TeamModel";
+import { TeamType } from "@/api/team/TeamMdel";
 //图片上传的ref属性
 const upImgRef = ref();
 //表单的ref属性

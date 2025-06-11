@@ -9,6 +9,7 @@ import lombok.Data;
 
 import java.util.Date;
 
+ 
 @Data
 @TableName("team")
 public class Team {
@@ -17,7 +18,7 @@ public class Team {
     private Long categoryId;
     private String name;
     private String image;
-    private Integer hasTop;
+    private String hasTop;
     private String details;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createTime;

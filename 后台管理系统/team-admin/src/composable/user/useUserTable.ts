@@ -1,19 +1,18 @@
-import { ref,reactive, onMounted, nextTick } from "vue";
-import { getListApi } from "@/api/user";
-import { ListParm } from "@/api/user/UserModel";
+import { nextTick, onMounted, reactive, ref } from "vue"
+import { getListApi } from "@/api/user"
+import { ListParm } from "@/api/user/UserModel"
 export default function useUserTable() {
-    // 表格数据
-    const tableList = ref([]);
-    // 表格高度
-    const tableHeight = ref(0);
-    // 绑定表单绑定的对象
+    //表格数据
+    const tableList = ref([])
+    //表格高度
+    const tableHeight = ref(0)
+    //搜索表单绑定的对象
     const searchParm = reactive<ListParm>({
-        nickName: '', // 昵称
-        pageSize: 10, // 每页显示条数
-        currentPage: 1, // 当前页码
-        total: 0, // 总条数
-    }); // 定义搜索参数
-
+        nickName: '',
+        pageSize:10,
+        currentPage:1,
+        total:0
+    })
     //获取列表
     const getList = async()=>{
         let res = await getListApi(searchParm)
@@ -25,7 +24,6 @@ export default function useUserTable() {
             searchParm.total = res.data.total;
         }
     }
-
     //搜索按钮
     const searchBtn = () => {
         getList()
@@ -36,20 +34,16 @@ export default function useUserTable() {
         searchParm.currentPage = 1;
         getList()
     }
-
-    // 页容量改变时触发
-    const sizeChange = (size: number) => {
-        searchParm.pageSize = size; // 设置每页显示条数
-        getList(); // 获取列表 
+    //页容量改变时触发
+    const sizeChange = (size:number)=>{
+        searchParm.pageSize = size;
+        getList()
     }
-
-    // 页数改变时触发
-    const currentChange = (page: number) => {
-        searchParm.currentPage = page; // 设置当前页码
-        getList(); // 获取列表
-
+    //页数改变时触发
+    const currentChange = (page:number)=>{
+        searchParm.currentPage = page;
+        getList()
     }
-
     onMounted(()=>{
         getList()
         //表格高度计算
@@ -57,7 +51,14 @@ export default function useUserTable() {
             tableHeight.value = window.innerHeight - 220
         })
     })
-
-
-    return { searchParm, getList,searchBtn, resetBtn, tableList, sizeChange, currentChange, tableHeight }
+    return{
+        searchParm,
+        getList,
+        searchBtn,
+        resetBtn,
+        tableList,
+        sizeChange,
+        currentChange,
+        tableHeight
+    }
 }

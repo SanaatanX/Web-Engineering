@@ -1,181 +1,258 @@
 <template>
-    <!-- 推荐社团 -->
-    <el-row>
-        <el-col :span="24">
-    <el-card class="box-card" :body-style="{ height:'250px',padding:'10px'}">
-    <template #header>
-      <div class="card-header">
-        <span class="moretitle">推荐社团</span>
-        <el-button class="button" text>更多
-            <el-icon>
-                <ArrowRight />
-            </el-icon>
-        </el-button>
-      </div>
-    </template>
-    <div>
-        <swipper1></swipper1>
-    </div>
-  </el-card>
+  <!-- 推荐社团 -->
+  <el-row style="margin-top: 20px">
+    <el-col :span="24">
+      <el-card
+        class="box-card"
+        :body-style="{ height: '250px', padding: '10px' }"
+      >
+        <template #header>
+          <div class="card-header">
+            <span class="moretitle">推荐社团</span>
+            <el-button @click="tabClick('team')" class="button" text
+              >更多
+              <el-icon>
+                <ArrowRight></ArrowRight>
+              </el-icon>
+            </el-button>
+          </div>
+        </template>
+        <div>
+          <swipper1></swipper1>
+        </div>
+      </el-card>
     </el-col>
-    </el-row>
-
-    <!-- 活动推荐 -->
-    <el-row :gutter="20" style="margin-top: 20px;">
-        <el-col :span="8" :offset="0">
-           <el-card class="box-card":body-style="{ height:'250px',padding:'10px'}">
-            <template #header>
-              <div class="card-header">
-                <span class="moretitle">推荐社团</span>
-              <el-button class="button" text>更多
-                <el-icon>
-                <ArrowRight />
-                </el-icon>
-              </el-button>
-              </div>
-            </template>
-    <div class="text item">
-        <swipper></swipper>
-    </div>
-    </el-card>
+  </el-row>
+  <!-- 活动推荐 -->
+  <el-row :gutter="20" style="margin-top: 30px">
+    <el-col :span="8" :offset="0">
+      <el-card
+        class="box-card"
+        :body-style="{ height: '250px', padding: '10px' }"
+      >
+        <template #header>
+          <div class="card-header">
+            <span class="moretitle">推荐活动</span>
+            <el-button @click="tabClick('activity')" class="button" text
+              >更多
+              <el-icon>
+                <ArrowRight></ArrowRight>
+              </el-icon>
+            </el-button>
+          </div>
+        </template>
+        <div>
+          <swipper></swipper>
+        </div>
+      </el-card>
     </el-col>
-
-    <!-- 最新公告 -->
-        <el-col :span="16" :offset="0">
-            <el-card class="box-card":body-style="{ height:'250px',padding:'10px'}">
-            <template #header>
-              <div class="card-header">
-                <span class="moretitle">最新公告</span>
-              <el-button class="button" text>更多
-                <el-icon>
-                <ArrowRight />
-                </el-icon>
-              </el-button>
-              </div>
-            </template>
+    <el-col :span="16" :offset="0">
+      <el-card
+        class="box-card"
+        :body-style="{ height: '250px', padding: '10px' }"
+      >
+        <template #header>
+          <div class="card-header">
+            <span class="moretitle">推荐公告</span>
+            <el-button @click="tabClick('notice')" class="button" text
+              >更多
+              <el-icon>
+                <ArrowRight></ArrowRight>
+              </el-icon>
+            </el-button>
+          </div>
+        </template>
         <div>
-            <div  class="notice" v-for="(item,index) in noticeList">
-                <div class="title" >{{index+1 + "、" +item.title }}</div>
-                <div class="date" >{{ item.createTime }}</div>
-            </div>
+          <div @click="toNoticeDetail(item)" class="notice" v-for="(item, index) in noticeList">
+            <div class="title">{{ index + 1 + "、" + item["title"] }}</div>
+            <div class="date">{{ item["createTime"] }}</div>
+          </div>
         </div>
-        </el-card>
-        </el-col>
-    </el-row>
-
-    <!-- 活动列表 -->
-     <el-row style="margin-top: 30px;">   
-        <el-col :span="24" :offset="0">
-            <el-card class="box-card":body-style="{ height:'250px',padding:'10px'}">
-            <template #header>
-              <div class="card-header">
-                <span class="moretitle">最新活动</span>
-              <el-button class="button" text>更多
-                <el-icon>
-                <ArrowRight />
-                </el-icon>
-              </el-button>
-              </div>
-            </template>
+      </el-card>
+    </el-col>
+  </el-row>
+  <el-row style="margin-top: 30px">
+    <el-col :span="24" :offset="0">
+      <el-card
+        class="box-card"
+        :body-style="{ height: '250px', padding: '10px' }"
+      >
+        <template #header>
+          <div class="card-header">
+            <span class="moretitle">最新活动</span>
+            <el-button @click="tabClick('activity')" class="button" text
+              >更多
+              <el-icon>
+                <ArrowRight></ArrowRight>
+              </el-icon>
+            </el-button>
+          </div>
+        </template>
         <div>
-            <div  class="notice" v-for="(item,index) in noticeList">
-                <div class="title" >{{index+1 + "、" +item.title }}</div>
-                <div class="date" >{{ item.createTime }}</div>
-            </div>
+          <div @click="toActivieyDetail(item)" class="notice" v-for="(item, index) in newActivity">
+            <div class="title">{{ index + 1 + "、" + item["title"] }}</div>
+            <div class="date">{{ item["createTime"] }}</div>
+          </div>
         </div>
-        </el-card>
-        </el-col>
-     </el-row>
-
-     <!-- 新闻列表 -->
-     <el-row style="margin-top: 30px;">   
-        <el-col :span="24" :offset="0">
-            <el-card class="box-card":body-style="{ height:'250px',padding:'10px'}">
-            <template #header>
-              <div class="card-header">
-                <span class="moretitle">最新新闻</span>
-              <el-button class="button" text>更多
-                <el-icon>
-                <ArrowRight />
-                </el-icon>
-              </el-button>
-              </div>
-            </template>
+      </el-card>
+    </el-col>
+  </el-row>
+  <el-row style="margin-top: 30px">
+    <el-col :span="24" :offset="0">
+      <el-card
+        class="box-card"
+        :body-style="{ height: '250px', padding: '10px' }"
+      >
+        <template #header>
+          <div class="card-header">
+            <span class="moretitle">最新新闻</span>
+            <el-button  @click="tabClick('news')" class="button" text
+              >更多
+              <el-icon>
+                <ArrowRight></ArrowRight>
+              </el-icon>
+            </el-button>
+          </div>
+        </template>
         <div>
-            <div  class="notice" v-for="(item,index) in noticeList">
-                <div class="title" >{{index+1 + "、" +item.title }}</div>
-                <div class="date" >{{ item.createTime }}</div>
-            </div>
+          <div @click="toNewsDetail(item)" class="notice" v-for="(item, index) in newNews">
+            <div class="title">{{ index + 1 + "、" + item["title"] }}</div>
+            <div class="date">{{ item["createTime"] }}</div>
+          </div>
         </div>
-        </el-card>
-        </el-col>
-     </el-row>
-
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import swipper1 from './swipper1.vue';
-import swipper from './swipper.vue';
-const noticeList = ref([
-       {
-        title:'书法社最新招新公告',
-        createTime:'2025-05-08'
-       },
-       {
-        title:'世界气象日',
-        createTime:'2025-05-09'
-       },
-       {
-        title:'世界湿地日',
-        createTime:'2025-05-10'
-       },
-       {
-        title:'书法社最新招新公告',
-        createTime:'2025-05-08'
-       },
-       {
-        title:'世界气象日',
-        createTime:'2025-05-09'
-       },
-       {
-        title:'世界湿地日',
-        createTime:'2025-05-10'
-       },
-])
+import { onMounted, ref } from "vue";
+import {
+  getTopNoticeApi,
+  getNewActivityApi,
+  getNewNoticeApi,
+} from "@/api/home";
+import swipper1 from "./swipper1.vue";
+import swipper from "./swipper.vue";
+import { useRouter } from "vue-router";
+import {tabsSotre} from '@/store/tabs/index'
+import { newsSotre } from "@/store/news";
+const nstore = newsSotre();
+const store = tabsSotre()
+const router = useRouter()
+const noticeList = ref([]);
+const tabClick = (activeName:any)=>{
+    // activeName.value = item.value
+    //清空列表数据
+    const item = ref('')
+    item.value = activeName;
+    nstore.newsList = [];
+    nstore.parm.currentPage = 1
+    nstore.parm.pageSize = 10
+    if(item.value =='activity'){
+      nstore.parm.type = '0'
+      //获取数据
+      nstore.getNewsList()
+    }
+    if(item.value =='news'){
+      nstore.parm.type = '1'
+      //获取数据
+      nstore.getNewsList()
+    }
+    if(item.value =='notice'){
+      nstore.parm.type = '2'
+      //获取数据
+      nstore.getNewsList()
+    }
+    store.setFatabs(item.value)
+    console.log(item.value)
+    if(item.value === 'mine'){
+      router.push({path:store.mineTabs})
+    }else{
+      router.push({name:item.value})
+    }
+    
+}
+//跳转活动详情
+const toActivieyDetail = (item: any) => {
+  console.log(item);
+  router.push({ path: `/activityDetails/${item.id}` });
+};
+//跳转新闻详情
+const toNewsDetail = (item: any) => {
+  console.log(item);
+  router.push({ path: `/newsDetails/${item.id}` });
+};
+//跳转供详情
+const toNoticeDetail = (item: any) => {
+  console.log(item);
+  router.push({ path: `/noticeDetails/${item.id}` });
+};
+//推荐公告
+const getTopNotice = async () => {
+  let res = await getTopNoticeApi();
+  console.log(res.data);
+  if (res && res.code == 200) {
+    noticeList.value = res.data;
+  }
+};
+//最新活动
+const newActivity = ref([]);
+const getNewActivity = async () => {
+  let res = await getNewActivityApi();
+  if (res && res.code == 200) {
+    newActivity.value = res.data;
+  }
+};
+//最新新闻
+const newNews = ref([]);
+const getNewNotice = async () => {
+  let res = await getNewNoticeApi();
+  if (res && res.code == 200) {
+    newNews.value = res.data;
+  }
+};
+onMounted(() => {
+  getTopNotice();
+  getNewActivity();
+  getNewNotice();
+});
 </script>
 
-<style scoped lang="scss">
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    } 
-    .moreactivity{
-        display: flex;
-        align-items: center; 
-        cursor: pointer;
-    }
-   .text{
-          font-size: 14px; 
-   }
-   .moretitle{
-           color: #F3AF28;
-           font-weight: 600;
-   }
-   .notice{
-           cursor: pointer;
-           display: flex;
-           height: 30px;
-           line-height: 30px;
-           .title {
-               font-size: 14px;
-               color: #666666;
-               font-weight: 600;
-           }
-   }
-   .date {
-       font-size: 14px;
-       margin-left: 20px;
-   }
+<style  lang="scss">
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.el-card__header{
+  padding: 8px!important;
+}
+.moreactivity {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.text {
+  font-size: 14px;
+}
+.moretitle {
+  color: #f3af28;
+  font-weight: 600;
+}
+.notice {
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  line-height: 30px;
+  .title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666666;
+  }
+  .date {
+    font-size: 14px;
+    margin-left: 20px;
+  }
+}
 </style>

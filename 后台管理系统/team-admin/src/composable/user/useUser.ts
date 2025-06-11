@@ -1,20 +1,28 @@
-import { ref } from "vue";
-import { User } from "@/api/user/UserModel";
-import { EditType,FuncList } from "@/type/BaseType";
-import useInstance from "@/hook/useInstance";
-import { deleteUserApi } from "@/api/user";
-import { ElMessage } from "element-plus";
-export default function useUser(getList:()=>FuncList) {
+import { User } from '@/api/user/UserModel';
+import { EditType, FuncList } from '@/type/BaseType';
+import { ref } from 'vue';
+import useInstance from '@/hooks/useInstance';
+import { deleteUserApi } from '@/api/user';
+import { ElMessage } from 'element-plus';
+export default function useUser(getList:FuncList) {
+    //获取全局属性
     const {global} = useInstance()
-    // 弹框的ref属性
-    const addUserRef = ref<{ show: (type:string,row?:User)=>void}>();
+    //弹框的ref属性
+    const addUserRef = ref<{ show: (type:string,row?:User) => void }>();
+    const assignRef = ref<{ show: (userId:string,nickName:string) => void }>();
     //新增
     const addBtn = () => {
-        addUserRef.value?.show(EditType.ADD);
+        addUserRef.value?.show(EditType.ADD)
     }
     //编辑
     const editBtn = (row:User) => {
-        addUserRef.value?.show(EditType.EDIT,row);
+        //显示弹框
+        addUserRef.value?.show(EditType.EDIT,row)
+    }
+    //分配菜单树
+    const assignBtn = (row:User)=>{
+        console.log(row)
+        assignRef.value?.show(row.userId,row.nickName)
     }
     //删除
     const deleteBtn = async(row:User) => {
@@ -32,5 +40,12 @@ export default function useUser(getList:()=>FuncList) {
             }
         }
     }
-    return { addUserRef, addBtn, editBtn, deleteBtn }
+    return {
+        addBtn,
+        editBtn,
+        deleteBtn,
+        addUserRef,
+        assignBtn,
+        assignRef
+    }
 }

@@ -1,5 +1,5 @@
 import http from '@/http/index'
-import { PageList, TeamType ,MemberList} from './TeamModel'
+import { PageList, TeamType ,MemberList} from './TeamMdel'
 //获取下拉
 export const getSelectApi = ()=>{
     return http.get("/api/category/getSelectList")
